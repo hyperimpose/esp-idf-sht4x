@@ -1,0 +1,12 @@
+idf_component_register(
+    SRCS
+        "embedded-i2c-sht4x/sht4x_i2c.c"
+        "embedded-i2c-sht4x/sensirion_common.c"
+        "embedded-i2c-sht4x/sensirion_i2c.c"
+        "embedded-i2c-sht4x/sensirion_i2c_hal.c"
+    INCLUDE_DIRS
+        "embedded-i2c-sht4x"
+        "include"
+    PRIV_REQUIRES
+        driver
+)

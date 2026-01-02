@@ -1,0 +1,59 @@
+* Sensirion I2C SHT4X ESP-IDF Component
+
+This repository is an ESP-IDF project that contains:
+- A [[./components/sht4x][component]] for interacting with the SHT4X family of sensors
+- Example main code for using this component
+
+*The component is using the official [[https://github.com/Sensirion/embedded-i2c-sht4x][embedded-i2c-sht4x]] library by Sensirion.*
+
+The full library code is included with git subtree. We implement an ESP-IDF
+specific [[./components/sht4x/implementation/sensirion_i2c_hal.c][HAL]] that uses the new (as of ESP-IDF v5.x) I2C driver. 
+
+
+The project was developed and tested on an *esp32c6*, but should work on any esp32.
+
+Tested ESP-IDF versions:
+- 5.5.1
+
+* Get Started
+
+You should be able to build and run this project on ESP-IDF v5.x.
+
+1. Wire the sensor to the MCU according the datasheet.
+2. Follow the [[https://docs.espressif.com/projects/esp-idf/en/v5.5.2/esp32c6/get-started/index.html][Get Started]] guide on Espressif's website. Make sure to select your actual MCU.
+
+* Usage
+
+You can use this component in your own projects:
+
+- Copy the directory ~components/sht4x~ to your project [1]
+- Adapt your project to use the library as shown in the [[./main/main.c][usage example]].
+- Remember to include the component to your [[.//main/CMakeLists.txt][CMakeLists.txt]].
+- You may need to run ~idf.py fullclean~ before the first build.
+- Build and flash: ~idf.py build && idf.py -p /dev/ttyACM0 flash~
+  
+[1] Your project should have a ~components~ directory in its root. If
+not, create it and copy the sht4x directory in there.
+
+**  Notes
+
+- The HAL is placed in ~components/sht4x/implementation/~. It also copied inside
+  ~components/sht4x/embedded-i2c-sht4x/~ replacing the original template.
+- The [[./components/sht4x/implementation/sensirion_i2c_hal.c][HAL]] source code contains comments about thread safety and the general implementation.
+- The [[./main/main.c][Usage Example]] has small differences from the one shown in Sensirion's library.
+  - Besides initializing and freeing, everything else is the same.
+
+* Developer Notes
+
+The official Sensirion library is included as a git subtree and changed to use the ESP-IDF HAL.
+
+To pull new commits run:
+#+BEGIN_SRC bash
+  git subtree pull --prefix=components/sht4x/embedded-i2c-sht4x embedded-i2c-sht4x master --squash
+#+END_SRC
+    
+* License
+
+The project is based on Sensirion's BSD-3 Clause licensed library.
+
+The HAL and any other code written on top is also licensed under BSD-3 Clause.
