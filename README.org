@@ -47,13 +47,19 @@ not, create it and copy the sht4x directory in there.
 
 The official Sensirion library is included as a git subtree and changed to use the ESP-IDF HAL.
 
+Setup:
+#+BEGIN_SRC bash
+  git remote add embedded-i2c-sht4x https://github.com/Sensirion/embedded-i2c-sht4x.git
+  git remote set-url --push embedded-i2c-sht4x DISABLED  # optional
+#+END_SRC
+
 To pull new commits run:
 #+BEGIN_SRC bash
   git subtree pull --prefix=components/sht4x/embedded-i2c-sht4x embedded-i2c-sht4x master --squash
 #+END_SRC
-    
+
 * License
 
 The project is based on Sensirion's BSD-3 Clause licensed library.
 
-The HAL and any other code written on top is also licensed under BSD-3 Clause.
+Any other code written on top is also licensed under BSD-3 Clause.
